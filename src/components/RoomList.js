@@ -21,13 +21,12 @@ class RoomList extends Component {
   }
 
   createRoom(newRoomValue) {
-    console.log(newRoomValue);
-    // e.preventDefault();
     if (!this.state.newRoomValue) { return; }
     const newRoom = this.state.newRoomValue
     this.roomsRef.push({
       name: newRoom
     })
+
     this.setState({
       newRoomValue: ''
     })
@@ -50,13 +49,14 @@ class RoomList extends Component {
             </li>
           )}
         </ul>
-        <form onSubmit={(newRoomValue) => this.createRoom(newRoomValue)}>
+        <form onSubmit={(newRoomValue) =>
+          this.createRoom(newRoomValue)}>
           <h4>Create new room</h4>
           <input type="text"
             placeholder="Enter a room name"
-            value={this.state.newRoom}
+            value={this.state.newRoomValue}
             onChange={(e) => this.handleChange(e)} />
-          <input type="Submit" />
+          <button type="submit">Create Room</button>
         </form>
       </div>
     );
