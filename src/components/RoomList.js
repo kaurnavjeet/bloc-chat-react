@@ -48,7 +48,7 @@ class RoomList extends Component {
         <ul>
           {this.state.rooms.map((room) =>
             <li key={room.key} onClick={() =>
-              this.props.onChangeActiveRoom(room)} style={{ fontSize: this.props.activeRoom === room ? '1.5em' : "1em" }}>
+              this.props.onChangeActiveRoom(room)} style={{ fontWeight: this.props.activeRoom === room ? 'bold' : "500" }}>
               {room.name}
             </li>
           )}
