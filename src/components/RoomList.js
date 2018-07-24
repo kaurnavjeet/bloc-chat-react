@@ -45,27 +45,32 @@ class RoomList extends Component {
 
   render() {
     return (
-      <div>
+      <div className="rooms">
 
-        <ul>
-          {this.state.rooms.map((room) =>
-            <li key={room.key} onClick={() =>
-              this.props.changeActiveRoom(room)} style={{ fontWeight: this.props.activeRoom === room ? 'bold' : "500" }}>
-              {room.name}
-            </li>
-          )}
-        </ul>
+        {this.props.user ?
+          <div className="room-content">
+            <ul>
+              {this.state.rooms.map((room) =>
+                <li key={room.key} onClick={() =>
+                  this.props.changeActiveRoom(room)} style={{ fontWeight: this.props.activeRoom === room ? 'bold' : "500" }}>
+                  {room.name}
+                </li>
+              )}
+            </ul>
 
 
-        <form onSubmit={(e) =>
-          this.createRoom(e)}>
-          <h4>Create new room</h4>
-          <input type="text"
-            placeholder="Enter a room name"
-            value={this.state.newRoomValue}
-            onChange={(e) => this.handleChange(e)} />
-          <button type="submit">Create Room</button>
-        </form>
+            <form onSubmit={(e) =>
+              this.createRoom(e)}>
+              <h4>Create new room</h4>
+              <input type="text"
+                placeholder="Enter a room name"
+                value={this.state.newRoomValue}
+                onChange={(e) => this.handleChange(e)} />
+              <button type="submit">Create Room</button>
+            </form>
+          </div>
+          : <div><h3>Please log in to view rooms</h3></div>
+        }
       </div>
     );
   }

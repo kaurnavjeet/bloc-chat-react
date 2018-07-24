@@ -30,9 +30,11 @@ class MessageList extends Component {
       <div className="displayMessage">
         <ul>
           {this.state.messages.map(message =>
+
             <li key={message.key}>
-              {this.props.activeRoom.key === message.roomID ? message.content : null}
+              {this.props.activeRoom.key === message.roomID ? message.content : <span>No messages</span>}
             </li>
+
           )}
         </ul>
       </div>
