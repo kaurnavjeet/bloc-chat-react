@@ -17,7 +17,7 @@ class MessageList extends Component {
     this.messagesRef.on("child_added", snapshot => {
       const message = snapshot.val();
       message.key = snapshot.key;
-      // console.log(message)
+      console.log(message)
       this.setState({
         messages: this.state.messages.concat(message)
       });
@@ -27,7 +27,7 @@ class MessageList extends Component {
   render() {
 
     return (
-      <div>
+      <div className="displayMessage">
         <ul>
           {this.state.messages.map(message =>
             <li key={message.key}>
@@ -35,7 +35,7 @@ class MessageList extends Component {
             </li>
           )}
         </ul>
-      </div >
+      </div>
     )
   }
 }
