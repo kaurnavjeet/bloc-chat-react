@@ -32,7 +32,7 @@ class MessageList extends Component {
           {this.state.messages.map(message =>
 
             <li key={message.key}>
-              {this.props.activeRoom.key === message.roomID ? message.content : <span>No messages</span>}
+              {this.props.activeRoom.key === message.roomID ? message.content : null}
             </li>
 
           )}
