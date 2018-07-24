@@ -47,7 +47,8 @@ class App extends Component {
           user={this.state.user}
         />
         <MessageList firebase={firebase}
-          activeRoom={this.state.activeRoom} />
+          activeRoom={this.state.activeRoom}
+        />
         <User firebase={firebase}
           setUser={(user) => this.setUser(user)}
           user={this.state.user}

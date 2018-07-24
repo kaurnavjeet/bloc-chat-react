@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 
+
 class MessageList extends Component {
   constructor(props) {
     super(props)
@@ -14,6 +15,9 @@ class MessageList extends Component {
 
 
   componentDidMount() {
+
+    console.log('--component mounted--')
+
     this.messagesRef.on("child_added", snapshot => {
       const message = snapshot.val();
       message.key = snapshot.key;
@@ -24,19 +28,23 @@ class MessageList extends Component {
     })
   }
 
+  displayMessage(message) {
+    return (
+      this.props.activeRoom.key === message.roomID ?
+        <li>{message.content}</li>
+        : null
+    )
+  }
+
   render() {
 
     return (
       <div className="displayMessage">
-        <ul>
-          {this.state.messages.map(message =>
-
-            <li key={message.key}>
-              {this.props.activeRoom.key === message.roomID ? message.content : null}
-            </li>
-
-          )}
-        </ul>
+        {this.state.messages.map(message =>
+          <ul key={message.key}>
+            {this.displayMessage(message)}
+          </ul>
+        )}
       </div>
     )
   }

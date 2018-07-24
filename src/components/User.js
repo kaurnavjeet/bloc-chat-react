@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 class User extends Component {
 
-
   signIn() {
     const provider = new this.props.firebase.auth.GoogleAuthProvider()
     this.props.firebase.auth().signInWithPopup(provider)
@@ -12,7 +11,7 @@ class User extends Component {
     this.props.firebase.auth().signOut()
   }
 
-  componentDidMount() {
+  componentDidMount(user) {
 
     this.props.firebase.auth().onAuthStateChanged(user => {
       this.props.setUser(user);
