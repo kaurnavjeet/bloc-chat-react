@@ -21,7 +21,7 @@ class App extends Component {
 
     this.state = {
       activeRoom: '',
-      user: '',
+      user: null,
     }
   }
 
@@ -33,7 +33,8 @@ class App extends Component {
 
   setUser(user) {
     this.setState({
-      user: user
+      user: user,
+      activeRoom: ''
     })
   }
 
