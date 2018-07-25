@@ -20,6 +20,13 @@ class RoomList extends Component {
       this.setState({ rooms: this.state.rooms.concat(room) });
     })
 
+    this.roomsRef.on("child_removed", snapshot => {
+      this.setState({
+        rooms: this.state.rooms.filter((room) =>
+          room.key !== snapshot.key)
+      })
+    })
+
   }
 
   createRoom(e) {
@@ -42,13 +49,9 @@ class RoomList extends Component {
     })
   }
 
-  deleteRoom(name) {
-    this.setState(((currentState) => {
-      return {
-        rooms: currentState.rooms.filter((room) =>
-          room.name !== name)
-      }
-    }))
+  deleteRoom(room) {
+    this.roomsRef.child(room.key).remove()
+
   }
 
   render() {
@@ -62,7 +65,7 @@ class RoomList extends Component {
                 <li key={room.key} onClick={() =>
                   this.props.changeActiveRoom(room)} style={{ fontWeight: this.props.activeRoom === room ? 'bold' : "500" }}>
                   <span>{room.name}</span>
-                  <button className="delete-btn" onClick={() => this.deleteRoom(room.name)}>x</button>
+                  <button className="delete-btn" onClick={() => this.deleteRoom(room)}>x</button>
                 </li>
               )}
             </ul>

@@ -25,7 +25,6 @@ class MessageList extends Component {
         messages: this.state.messages.concat(message)
       });
     })
-    console.log(this.state.messages)
   }
 
   displayMessage(message) {
