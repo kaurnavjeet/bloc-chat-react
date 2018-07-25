@@ -36,28 +36,8 @@ class MessageList extends Component {
     )
   }
 
-  displayForm(message) {
-    return (
-      this.props.activeRoom.key === message.roomID ?
-        <form className="new-message" onSubmit={(e) => this.createMessage(e)} >
-          <input type="text" placeholder="Write your message here" value={this.state.value}
-            onChange={(e) => this.handleChange(e)} />
-          <button className="submit">Send</button>
-        </form>
-        : null
-    )
-  }
 
-
-  // confirmActiveRoom(message) {
-  //   return (
-  //     this.props.activeRoom.key === message.roomID ?
-  //       this.createMessage()
-  //       : null
-  //   )
-  // }
-
-  createMessage(e, message) {
+  createMessage(e) {
     e.preventDefault();
     if (!this.state.value) { return; }
     const newMessage = this.state.value
