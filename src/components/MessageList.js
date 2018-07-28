@@ -107,13 +107,13 @@ class MessageList extends Component {
         </div>
 
         <div className="message-input">
-          {this.props.activeRoom.key !== this.state.messages.roomID ?
+          {this.props.activeRoom.key &&
             <form className="new-message" onSubmit={(e) => this.createMessage(e)} >
               <input type="text" placeholder="Write your message here" value={this.state.value}
                 onChange={(e) => this.handleChange(e)} />
               <button className="submit">Send</button>
             </form>
-            : null}
+          }
         </div>
 
       </div>

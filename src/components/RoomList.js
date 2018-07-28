@@ -7,6 +7,7 @@ class RoomList extends Component {
     this.state = {
       rooms: [],
       value: '',
+      editValue: '',
     };
 
     this.roomsRef = this.props.firebase.database().ref("rooms");
@@ -26,6 +27,15 @@ class RoomList extends Component {
           room.key !== snapshot.key)
       })
     })
+
+    // // this.roomsRef.on("child_updated", snapshot => {
+    // //   this.setState({
+    //       if (this.props.activeRoom.key === snapshot.key) {
+
+    //       }
+    // //     rooms: this.state.rooms.concat(room)
+    // //   })
+    // // })
 
   }
 
@@ -51,8 +61,33 @@ class RoomList extends Component {
 
   deleteRoom(room) {
     this.roomsRef.child(room.key).remove()
-
   }
+
+  // Create an input area that only shows up when the edit button is clicked.
+  // create an edit button.
+  // Attach the button to the editRoom function which will allow to change data in the local state
+  // Write function to change data in firebase.
+
+  // editRoom() {
+  //   return (
+  //     <form>
+  //       <input type="text" placeholder="Change Room Name" value={this.state.editValue} />
+  //     </form>
+  //   )
+  // }
+
+  // submitForm(e) {
+  //   e.preventDefault()
+  //   this.roomsRef.push((snapshot) => {
+
+
+
+  //   if (this.props.activeRoom.key === snapshot.key) {
+
+  //   }
+  //   })
+
+  // }
 
   render() {
     return (
@@ -66,6 +101,7 @@ class RoomList extends Component {
                   this.props.changeActiveRoom(room)} style={{ fontWeight: this.props.activeRoom === room ? 'bold' : "500" }}>
                   <span>{room.name}</span>
                   <button className="delete-btn" onClick={() => this.deleteRoom(room)}>x</button>
+                  <button className="edit-btn" onClick={() => this.editRoom()}>Edit</button>
                 </li>
               )}
             </ul>
