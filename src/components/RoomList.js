@@ -55,7 +55,8 @@ class RoomList extends Component {
 
   handleChange(e) {
     this.setState({
-      value: e.target.value
+      value: e.target.value,
+      editValue: e.target.editValue
     })
   }
 
@@ -95,16 +96,18 @@ class RoomList extends Component {
 
         {this.props.user ?
           <div className="room-content">
-            <ul>
-              {this.state.rooms.map((room) =>
-                <li key={room.key} onClick={() =>
+
+            {this.state.rooms.map((room) =>
+              <div key={room.key}>
+                <p onClick={() =>
                   this.props.changeActiveRoom(room)} style={{ fontWeight: this.props.activeRoom === room ? 'bold' : "500" }}>
                   <span>{room.name}</span>
-                  <button className="delete-btn" onClick={() => this.deleteRoom(room)}>x</button>
-                  <button className="edit-btn" onClick={() => this.editRoom()}>Edit</button>
-                </li>
-              )}
-            </ul>
+                </p>
+                <button className="delete-btn" onClick={() => this.deleteRoom(room)}>x</button>
+                <button className="edit-btn" onClick={() => this.editRoom()}>Edit</button>
+                <input type="text" placeholder="Edit room name" value={this.state.editValue} onChange={(e) => this.handleChange(e)} />
+              </div>
+            )}
 
 
 
